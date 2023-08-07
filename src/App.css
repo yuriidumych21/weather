@@ -1,5 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
+  background-color: lightblue;
 }
 
 .main-wrapper {
@@ -8,8 +13,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .answers {
   margin-top: 100px;
+}
+
+.answers > div {
+  margin-top: 10px;
+}
+
+.form {
+  height: 100vh;
+}
+
+.correct-answer {
+  color: green;
+}
+
+.wrong-answer {
+  color: red;
 }

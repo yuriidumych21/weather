@@ -10,6 +10,19 @@ const style = {
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
+  borderRadius: '5px',
+};
+
+const successStyles = {
+  border: '2px solid green',
+  background: 'lightgreen',
+  color: 'green',
+};
+
+const errorStyles = {
+  border: '2px solid red',
+  background: 'lightpink',
+  color: 'red',
 };
 
 const ResultsModal = ({ open, onClose, correctAnswers }) => {
@@ -20,7 +33,12 @@ const ResultsModal = ({ open, onClose, correctAnswers }) => {
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
     >
-      <Box sx={style}>
+      <Box
+        sx={{
+          ...style,
+          ...(correctAnswers >= 3 ? successStyles : errorStyles),
+        }}
+      >
         {correctAnswers >= 3 ? (
           <Typography id='modal-modal-title' variant='h6' component='h2'>
             Congratulations, you win. You have {correctAnswers} right guesses.

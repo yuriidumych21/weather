@@ -36,17 +36,15 @@ const Form = ({ changeScreen }) => {
     }
   };
 
-  const correctAnswers = answers.filter(({ temperature, real }) => {
-    return (
-      Number(real) > Number(temperature) - 5 && real < Number(temperature) + 5
-    );
-  });
+  const correctAnswers = answers.filter(
+    ({ temperature, real }) => Math.abs(temperature - real) <= 5
+  );
 
   return (
-    <div>
+    <div className='form'>
       {cities[activeCityIndex] && (
         <>
-          <h4>{cities[activeCityIndex].name}</h4>
+          <h3>{cities[activeCityIndex].name}</h3>
           <Input
             type='number'
             required
@@ -61,7 +59,14 @@ const Form = ({ changeScreen }) => {
 
       <div className='answers'>
         {answers.map(({ name, temperature, real }, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            className={
+              Math.abs(temperature - real) <= 5
+                ? 'correct-answer'
+                : 'wrong-answer'
+            }
+          >
             <span>{name}</span>: <span>your's - {temperature} C</span>,{' '}
             <span>real - {real} C</span>
           </div>
